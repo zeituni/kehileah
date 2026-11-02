@@ -21,7 +21,6 @@
     <section class="directory" aria-labelledby="directory-title">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">המלצות מהשכנים</span>
           <h2 id="directory-title">בעלי ובעלות מקצוע</h2>
         </div>
         <span class="count" id="count" aria-live="polite"></span>
@@ -31,6 +30,12 @@
         <span class="search-icon" aria-hidden="true">⌕</span>
         <input id="search" type="search" placeholder="איזה שירות מחפשים? למשל: צלם, תזונאית…" autocomplete="off">
         <kbd>⌘ K</kbd>
+      </label>
+      <label class="category-filter" for="category-filter">
+        <span>קטגוריה</span>
+        <select id="category-filter" aria-label="סינון לפי קטגוריה">
+          <option value="">כל הקטגוריות</option>
+        </select>
       </label>
       <p class="search-hint">אפשר לחפש לפי תחום עיסוק</p>
       <div class="results" id="results" aria-live="polite" aria-busy="true"></div>

@@ -1,5 +1,6 @@
 const results = document.querySelector('#results');
 const search = document.querySelector('#search');
+const categoryFilter = document.querySelector('#category-filter');
 const count = document.querySelector('#count');
 let professionals = [];
 
@@ -63,7 +64,10 @@ function card(person, index) {
 
 function render() {
   const query = search.value.trim().toLocaleLowerCase('he');
-  const filtered = professionals.filter((person) => person.profession.toLocaleLowerCase('he').includes(query));
+  const category = categoryFilter.value;
+  const filtered = professionals.filter((person) =>
+    person.profession.toLocaleLowerCase('he').includes(query)
+    && (!category || person.category === category));
   count.textContent = `${filtered.length} ${filtered.length === 1 ? 'בעל.ת מקצוע' : 'בעלי ובעלות מקצוע'}`;
   results.innerHTML = filtered.length
     ? filtered.map(card).join('')
@@ -76,6 +80,10 @@ async function loadProfessionals() {
     const response = await fetch('/api/professionals');
     if (!response.ok) throw new Error('Could not load directory');
     professionals = await response.json();
+    const categories = [...new Set(professionals.map((person) => person.category).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, 'he'));
+    categoryFilter.innerHTML = '<option value="">כל הקטגוריות</option>'
+      + categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join('');
     render();
   } catch {
     count.textContent = '';
@@ -85,6 +93,7 @@ async function loadProfessionals() {
 }
 
 search.addEventListener('input', render);
+categoryFilter.addEventListener('change', render);
 document.addEventListener('keydown', (event) => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
     event.preventDefault();

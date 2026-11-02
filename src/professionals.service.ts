@@ -13,6 +13,7 @@ export interface Professional {
   website: string;
   social: string;
   preferredContact: string;
+  category: string;
 }
 
 @Injectable()
@@ -22,7 +23,7 @@ export class ProfessionalsService {
   constructor() {
     const csv = readFileSync(join(process.cwd(), 'data', 'professionals.csv'), 'utf8');
     const rows: string[][] = parse(csv, { bom: true, skip_empty_lines: true });
-    // The packaged CSV contains only source columns B–E and G–K; source F is skipped.
+    // The packaged CSV contains source columns B–E, G–K, and L; source F is skipped.
     this.professionals = rows.slice(1)
       .map((row) => ({
         name: (row[0] || '').trim(),
@@ -34,6 +35,7 @@ export class ProfessionalsService {
         website: (row[6] || '').trim(),
         social: (row[7] || '').trim(),
         preferredContact: (row[8] || '').trim(),
+        category: (row[9] || '').trim(),
       }))
       .filter((person) => person.profession.length > 0);
   }

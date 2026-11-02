@@ -1,0 +1,22 @@
+{
+  "name": "Kehileah NestJS",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Kehileah web app",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  }
+}

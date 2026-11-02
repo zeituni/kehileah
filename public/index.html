@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f4e8">
+  <title>אנשי המקצוע בקהילה | קהילאה</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">קהילת לאה גולדברג</span>
+      <h1>הכישרונות של הקהילה,<br><span>קרוב לבית</span></h1>
+      <p>מכירים את אנשי המקצוע שלנו. חפשו תחום, מצאו מענה, וצרו קשר ישירות.</p>
+    </div>
+    <img class="community-mark" src="/kehilea.jpeg" alt="סמל קהילאה: צוות, ילדים והורים">
+  </header>
+
+  <main>
+    <section class="directory" aria-labelledby="directory-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">המלצות מהשכנים</span>
+          <h2 id="directory-title">בעלי ובעלות מקצוע</h2>
+        </div>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+
+      <label class="search-box" for="search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="search" type="search" placeholder="איזה שירות מחפשים? למשל: צלם, תזונאית…" autocomplete="off">
+        <kbd>⌘ K</kbd>
+      </label>
+      <p class="search-hint">אפשר לחפש לפי תחום עיסוק</p>
+      <div class="results" id="results" aria-live="polite" aria-busy="true"></div>
+    </section>
+  </main>
+
+  <footer>קהילאה <span>·</span> קהילה מקומית, קשרים קרובים</footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
